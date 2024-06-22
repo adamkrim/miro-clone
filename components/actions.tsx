@@ -36,7 +36,7 @@ export const Actions = ({
   const { onOpen } = useRenameModal();
 
   const onDelete = () => {
-    remove({ id })
+    remove({ boardId: id })
       .then(() => toast.success("Board deleted"))
       .catch(() => toast.error("Failed to delete board"));
   };

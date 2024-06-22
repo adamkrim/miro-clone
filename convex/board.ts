@@ -38,7 +38,7 @@ export const create = mutation({
 
 export const remove = mutation({
   args: {
-    id: v.id("boards"),
+    boardId: v.id("boards"),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -47,9 +47,29 @@ export const remove = mutation({
       throw new Error("Not authenticated");
     }
 
-    // TODO: Later check to delete favorite relation as well
+    const userId = identity.subject;
 
-    const board = await ctx.db.delete(args.id);
+    const board = await ctx.db.get(args.boardId);
+
+    if (!board) {
+      throw new Error("Board not found");
+    }
+
+    const existingFavorites = await ctx.db
+      .query("userFavorites")
+      .withIndex("by_board", (q) => q.eq("boardId", args.boardId))
+      .collect();
+
+    if (existingFavorites.length > 0) {
+      const deleteFavorites = existingFavorites.map((favorite) => {
+        return ctx.db.delete(favorite._id);
+      });
+      await Promise.all(deleteFavorites);
+    }
+
+    const deletedBoard = await ctx.db.delete(args.boardId);
+
+    return deletedBoard;
   },
 });
 
