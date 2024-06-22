@@ -23,7 +23,7 @@ export const EmptyOrg = () => {
             <Button size="lg">Create organization</Button>
           </DialogTrigger>
           <DialogContent className="max-w-[480px] border-none bg-transparent p-0">
-            <CreateOrganization />
+            <CreateOrganization routing="hash" />
           </DialogContent>
         </Dialog>
       </div>

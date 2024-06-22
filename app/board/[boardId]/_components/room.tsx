@@ -15,9 +15,7 @@ interface RoomProps {
 
 export function Room({ children, roomId, fallback }: RoomProps) {
   return (
-    <LiveblocksProvider
-      publicApiKey={process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_API_KEY as string}
-    >
+    <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
       <RoomProvider id={roomId}>
         <ClientSideSuspense fallback={fallback}>{children}</ClientSideSuspense>
       </RoomProvider>
