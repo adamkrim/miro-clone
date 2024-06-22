@@ -1,6 +1,7 @@
 "use client";
 
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 import { DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu";
 import { Link2, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -20,7 +21,7 @@ interface ActionsProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
-  id: string;
+  id: Id<"boards">;
   title: string;
 }
 
