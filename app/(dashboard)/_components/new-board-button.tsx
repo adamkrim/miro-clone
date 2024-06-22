@@ -37,14 +37,14 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       disabled={pending || disabled}
       onClick={onClick}
       className={cn(
-        "col-span-1 aspect-[100/127] bg-blue-600 rounded-lg hover:bg-blue-800 flex flex-col items-center justify-center py-6",
+        "col-span-1 flex aspect-[100/127] flex-col items-center justify-center rounded-lg bg-blue-600 py-6 hover:bg-blue-800",
         (pending || disabled) &&
-          "opacity-75 hover:bg-blue-600 cursor-not-allowed"
+          "cursor-not-allowed opacity-75 hover:bg-blue-600"
       )}
     >
       <div />
-      <Plus className="h-12 w-12 text-white stroke-1" />
-      <p className="text-xs text-white font-light">New Board</p>
+      <Plus className="h-12 w-12 stroke-1 text-white" />
+      <p className="text-xs font-light text-white">New Board</p>
     </button>
   );
 };

@@ -20,11 +20,11 @@ export const OrgSidebar = () => {
   const favorites = searchParams.get("favorites");
 
   return (
-    <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5">
+    <div className="hidden w-[206px] flex-col space-y-6 pl-5 pt-5 lg:flex">
       <Link href="/">
         <div className="flex items-center gap-x-2">
           <Image src="/logo.svg" alt="Logo" width={60} height={60} />
-          <span className={cn("font-semibold text-2xl", font.className)}>
+          <span className={cn("text-2xl font-semibold", font.className)}>
             Miro
           </span>
         </div>
@@ -50,15 +50,15 @@ export const OrgSidebar = () => {
           },
         }}
       />
-      <div className="space-y-1 w-full">
+      <div className="w-full space-y-1">
         <Button
           asChild
           size="lg"
           variant={favorites ? "ghost" : "secondary"}
-          className="font-normal justify-start px-2 w-full"
+          className="w-full justify-start px-2 font-normal"
         >
           <Link href="/">
-            <LayoutDashboard className="h-4 w-4 mr-2" />
+            <LayoutDashboard className="mr-2 h-4 w-4" />
             Team boards
           </Link>
         </Button>
@@ -66,7 +66,7 @@ export const OrgSidebar = () => {
           asChild
           size="lg"
           variant={favorites ? "secondary" : "ghost"}
-          className="font-normal justify-start px-2 w-full"
+          className="w-full justify-start px-2 font-normal"
         >
           <Link
             href={{
@@ -74,7 +74,7 @@ export const OrgSidebar = () => {
               query: { favorites: true },
             }}
           >
-            <Star className="h-4 w-4 mr-2" />
+            <Star className="mr-2 h-4 w-4" />
             Favorite boards
           </Link>
         </Button>
