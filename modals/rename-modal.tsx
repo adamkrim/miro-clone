@@ -2,6 +2,7 @@
 
 import { FormEventHandler, useEffect, useState } from "react";
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 import { toast } from "sonner";
 
 import { useRenameModal } from "@/store/use-rename-modal";
@@ -32,7 +33,7 @@ export const RenameModal = () => {
     e.preventDefault();
 
     mutate({
-      id: initialValues.id,
+      id: initialValues.id as Id<"boards">,
       title,
     })
       .then(() => {

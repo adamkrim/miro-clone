@@ -21,7 +21,7 @@ interface ActionsProps {
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
-  id: Id<"boards">;
+  boardId: string;
   title: string;
 }
 
@@ -29,21 +29,21 @@ export const Actions = ({
   children,
   side,
   sideOffset,
-  id,
+  boardId,
   title,
 }: ActionsProps) => {
   const { mutate: remove, pending } = useApiMutation(api.board.remove);
   const { onOpen } = useRenameModal();
 
   const onDelete = () => {
-    remove({ boardId: id })
+    remove({ boardId: boardId as Id<"boards"> })
       .then(() => toast.success("Board deleted"))
       .catch(() => toast.error("Failed to delete board"));
   };
 
   const onCopyLink = () => {
     navigator.clipboard
-      .writeText(`${window.location.origin}/board/${id}`)
+      .writeText(`${window.location.origin}/board/${boardId}`)
       .then(() => toast.success("Link copied to clipboard"))
       .catch(() => toast.error("Failed to copy board link"));
   };
@@ -63,7 +63,7 @@ export const Actions = ({
         </DropdownMenuItem>
         <DropdownMenuItem
           className="cursor-pointer p-3"
-          onClick={() => onOpen(id, title)}
+          onClick={() => onOpen(boardId, title)}
         >
           <Pencil className="mr-2 h-4 w-4" />
           Rename

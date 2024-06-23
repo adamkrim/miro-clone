@@ -2,14 +2,14 @@ import { Id } from "@/convex/_generated/dataModel";
 import { create } from "zustand";
 
 const defaultValues = {
-  id: "" as Id<"boards">,
+  id: "",
   title: "",
 };
 
 interface IRenameModal {
   isOpen: boolean;
   initialValues: typeof defaultValues;
-  onOpen: (id: Id<"boards">, title: string) => void;
+  onOpen: (id: string, title: string) => void;
   onClose: () => void;
 }
 
