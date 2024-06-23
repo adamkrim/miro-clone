@@ -110,8 +110,7 @@ export type CanvasState =
         | LayerType.Text
         | LayerType.Note
         | LayerType.Rectangle
-        | LayerType.Ellipse
-        | LayerType.Path;
+        | LayerType.Ellipse;
     }
   | {
       mode: CanvasMode.Resizing;
@@ -131,3 +130,10 @@ export enum CanvasMode {
   Resizing,
   Pencil,
 }
+
+export type Layer =
+  | TextLayer
+  | NoteLayer
+  | RectangleLayer
+  | EllipseLayer
+  | PathLayer;
