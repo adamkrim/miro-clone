@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/store/use-pro-modal";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 
 interface NewBoardButtonProps {
@@ -16,6 +17,7 @@ interface NewBoardButtonProps {
 
 export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
   const router = useRouter();
+  const proModal = useProModal();
   const { mutate, pending } = useApiMutation(api.board.create);
 
   const onClick = () => {
@@ -29,6 +31,7 @@ export const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
       })
       .catch((error) => {
         toast.error("Failed to create board");
+        proModal.onOpen();
       });
   };
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { ProModal } from "@/modals/pro-modal";
 import { RenameModal } from "@/modals/rename-modal";
 
 export const ModalProvider = () => {
@@ -18,6 +19,7 @@ export const ModalProvider = () => {
   return (
     <>
       <RenameModal />
+      <ProModal />
     </>
   );
 };
