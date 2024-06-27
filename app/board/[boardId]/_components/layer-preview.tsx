@@ -4,9 +4,11 @@ import { memo } from "react";
 import { useStorage } from "@liveblocks/react/suspense";
 
 import { LayerType } from "@/types/canvas";
+import { colorToCss } from "@/lib/utils";
 
 import { Ellipse } from "./ellipse";
 import { Note } from "./note";
+import { Path } from "./path";
 import { Rectangle } from "./rectangle";
 import { Text } from "./text";
 
@@ -61,8 +63,19 @@ export const LayerPreview = memo(
             selectionColor={selectionColor}
           />
         );
+      case LayerType.Path:
+        return (
+          <Path
+            x={layer.x}
+            y={layer.y}
+            points={layer.points}
+            fillColor={layer.fillColor ? colorToCss(layer.fillColor) : "#000"}
+            onPointerDown={(e) => onLayerPointerDown(e, layerId)}
+            stroke={selectionColor}
+          />
+        );
       default:
-        console.warn("Unknown layer type", layer.type);
+        console.warn("Unknown layer type");
         return null;
     }
   }
