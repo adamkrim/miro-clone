@@ -24,4 +24,13 @@ export default defineSchema({
     .index("by_user_board", ["userId", "boardId"])
     .index("by_org_board", ["orgId", "boardId"])
     .index("by_user_board_org", ["userId", "boardId", "orgId"]),
+  orgSubscriptions: defineTable({
+    orgId: v.string(),
+    stripeCustomerId: v.string(),
+    stripeSubscriptionId: v.string(),
+    stripePriceId: v.string(),
+    stripeCurrentPeriodEnd: v.number(),
+  })
+    .index("by_org", ["orgId"])
+    .index("by_subscription", ["stripeSubscriptionId"]),
 });
